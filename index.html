@@ -1,0 +1,106 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorez le Monde - Agence de Tourisme</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+    <!-- En-tête -->
+    <header class="bg-blue-600 text-white py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold">Explorez le Monde</h1>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="#home" class="hover:underline">Accueil</a></li>
+                    <li><a href="destinations.html" class="hover:underline">Destinations</a></li>
+                    <li><a href="#contact" class="hover:underline">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Section Hero -->
+    <section id="home" class="bg-cover bg-center h-96 flex items-center justify-center text-white" style="background-image: url('https://source.unsplash.com/random/1600x900/?travel')">
+        <div class="text-center">
+            <h2 class="text-4xl font-bold mb-4">Découvrez des Aventures Inoubliables</h2>
+            <p class="text-lg mb-6">Explorez les plus belles destinations avec notre agence de tourisme.</p>
+            <a href="destinations.html" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">Voir les Destinations</a>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact" class="bg-gray-200 py-12">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Contactez-Nous</h2>
+            <div class="max-w-lg mx-auto">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <div>
+                        <label for="name" class="block text-gray-700">Nom</label>
+                        <input type="text" id="name" class="w-full p-2 border rounded mt-1">
+                    </div>
+                    <div class="mt-4">
+                        <label for="email" class="block text-gray-700">Email</label>
+                        <input type="email" id="email" class="w-full p-2 border rounded mt-1">
+                    </div>
+                    <div class="mt-4">
+                        <label for="message" class="block text-gray-700">Message</label>
+                        <textarea id="message" class="w-full p-2 border rounded mt-1" rows="4"></textarea>
+                    </div>
+                    <button onclick="submitForm()" class="mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded w-full">Envoyer</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- Pied de page -->
+    <footer class="bg-blue-600 text-white py-4">
+        <div class="container mx-auto px-4 text-center">
+            <p>© 2025 Explorez le Monde. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="touris.js"></script>
+</body>
+</html>
