@@ -1,0 +1,106 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Destinations - Explorez le Monde</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+    <!-- En-tête -->
+    <header class="bg-blue-600 text-white py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold">Explorez le Monde</h1>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="index.html" class="hover:underline">Accueil</a></li>
+                    <li><a href="#destinations" class="hover:underline">Destinations</a></li>
+                    <li><a href="index.html#contact" class="hover:underline">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Section Destinations -->
+    <section id="destinations" class="py-12">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Destinations Populaires</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Destination 1 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="paris.jpg" alt="Paris" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold">Paris, France</h3>
+                        <p class="text-gray-600">Découvrez la ville de l'amour avec ses monuments emblématiques et sa cuisine raffinée.</p>
+                        <a href="#" class="text-blue-600 hover:underline mt-2 inline-block">En savoir plus</a>
+                    </div>
+                </div>
+                <!-- Destination 2 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="Bali-Indonesia-Banner.jpg" alt="Bali" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold">Bali, Indonésie</h3>
+                        <p class="text-gray-600">Plages paradisiaques, temples anciens et une culture vibrante vous attendent.</p>
+                        <a href="#" class="text-blue-600 hover:underline mt-2 inline-block">En savoir plus</a>
+                    </div>
+                </div>
+                <!-- Destination 3 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="New_York_1.jpg" alt="New York" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold">New York, USA</h3>
+                        <p class="text-gray-600">La ville qui ne dort jamais, avec ses gratte-ciel et ses attractions iconiques.</p>
+                        <a href="#" class="text-blue-600 hover:underline mt-2 inline-block">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pied de page -->
+    <footer class="bg-blue-600 text-white py-4">
+        <div class="container mx-auto px-4 text-center">
+            <p>© 2025 Explorez le Monde. Tous droits réservés.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voitures - Explorez le Monde</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-100 font-sans">
+    <header class="bg-blue-600 text-white py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold">Explorez le Monde</h1>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="index.html" class="hover:underline">Accueil</a></li>
+                    <li><a href="cars.html" class="hover:underline">Voitures</a></li>
+                    <li><a href="trips.html" class="hover:underline">Trajets</a></li>
+                    <li><a href="pickup.html" class="hover:underline">Points de Récupération</a></li>
+                    <li><a href="booking.html" class="hover:underline">Réservation</a></li>
+                    <li><a href="contact.html" class="hover:underline">Contact</a></li>
+                    <li><a href="faq.html" class="hover:underline">FAQ</a></li>
+                    <li><a href="legal.html" class="hover:underline">Mentions Légales</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="py-12">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Nos Voitures</h2>
+            <div id="cars-list" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Les voitures seront insérées ici par JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-blue-600 text-white py-4">
+        <div class="container mx-auto px-4 text-center">
+            <p>© 2025 Explorez le Monde. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="touris.js"></script>
+</body>
+</html>

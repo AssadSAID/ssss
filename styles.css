@@ -1,0 +1,55 @@
+/* Styles personnalisés pour le site de tourisme */
+section .bg-white {
+    transition: transform 0.3s ease-in-out;
+}
+
+section .bg-white:hover {
+    transform: scale(1.02);
+}
+
+img {
+    transition: opacity 0.3s ease-in-out;
+}
+
+img:hover {
+    opacity: 0.9;
+}
+
+ul li {
+    margin-bottom: 0.5rem;
+}
+
+select, input, textarea {
+    transition: border-color 0.3s ease-in-out;
+}
+
+select:focus, input:focus, textarea:focus {
+    border-color: #2563eb;
+    outline: none;
+}
+
+button:hover {
+    transform: translateY(-1px);
+}
+
+/* Styles pour la modale */
+#carModal {
+    z-index: 1000;
+}
+
+#carModal .bg-white {
+    max-width: 90%;
+    max-height: 90vh;
+    overflow: auto;
+}
+
+#carModal button {
+    font-size: 1.5rem;
+    padding: 0.5rem;
+}
+
+@media (max-width: 640px) {
+    #carModal .bg-white {
+        max-width: 95%;
+    }
+}

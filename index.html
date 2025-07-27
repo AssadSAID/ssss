@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorez le Monde - Agence de Tourisme</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-100 font-sans">
+    <!-- En-tête -->
+    <header class="bg-blue-600 text-white py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold">Explorez le Monde</h1>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="index.html" class="hover:underline">Accueil</a></li>
+                    <li><a href="cars.html" class="hover:underline">Voitures</a></li>
+                    <li><a href="trips.html" class="hover:underline">Trajets</a></li>
+                    <li><a href="pickup.html" class="hover:underline">Points de Récupération</a></li>
+                    <li><a href="booking.html" class="hover:underline">Réservation</a></li>
+                    <li><a href="contact.html" class="hover:underline">Contact</a></li>
+                    <li><a href="faq.html" class="hover:underline">FAQ</a></li>
+                    <li><a href="legal.html" class="hover:underline">Mentions Légales</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Section Hero -->
+    <section class="bg-cover bg-center h-96 flex items-center justify-center text-white" style="background-image: url(Bali-Indonesia-Banner.jpg)">
+        <div class="text-center">
+            <h2 class="text-4xl font-bold mb-4">Bienvenue chez Explorez le Monde</h2>
+            <p class="text-lg mb-6">Votre partenaire pour des voyages inoubliables avec des voitures confortables, des trajets sur mesure et des points de récupération pratiques.</p>
+            <a href="booking.html" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">Réserver Maintenant</a>
+        </div>
+    </section>
+
+    <!-- Section À propos -->
+    <section class="py-12">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">À propos de Nous</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto">Explorez le Monde est une agence de tourisme dédiée à offrir des expériences de voyage exceptionnelles. Nous proposons des voitures de location haut de gamme, des trajets personnalisés, et un système de réservation simple et sécurisé avec paiement via PayDunya.</p>
+        </div>
+    </section>
+
+    <!-- Section Destinations -->
+    <section class="py-12 bg-gray-200">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Nos Destinations</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="paris.jpg" alt="Paris" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold">Paris, France</h3>
+                        <p class="text-gray-600">La ville de l'amour avec ses monuments emblématiques.</p>
+                        <a href="trips.html" class="text-blue-600 hover:underline mt-2 inline-block">Voir les trajets</a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="Bali-Indonesia-Banner.jpg" alt="Bali" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold">Bali, Indonésie</h3>
+                        <p class="text-gray-600">Plages paradisiaques et culture vibrante.</p>
+                        <a href="trips.html" class="text-blue-600 hover:underline mt-2 inline-block">Voir les trajets</a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="New_York_1.jpg" alt="New York" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold">New York, USA</h3>
+                        <p class="text-gray-600">La ville qui ne dort jamais.</p>
+                        <a href="trips.html" class="text-blue-600 hover:underline mt-2 inline-block">Voir les trajets</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pied de page -->
+    <footer class="bg-blue-600 text-white py-4">
+        <div class="container mx-auto px-4 text-center">
+            <p>© 2025 Explorez le Monde. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="touris.js"></script>
+</body>
+</html>

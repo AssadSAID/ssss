@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réservation - Explorez le Monde</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-100 font-sans">
+    <header class="bg-blue-600 text-white py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold">Explorez le Monde</h1>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="index.html" class="hover:underline">Accueil</a></li>
+                    <li><a href="cars.html" class="hover:underline">Voitures</a></li>
+                    <li><a href="trips.html" class="hover:underline">Trajets</a></li>
+                    <li><a href="pickup.html" class="hover:underline">Points de Récupération</a></li>
+                    <li><a href="booking.html" class="hover:underline">Réservation</a></li>
+                    <li><a href="contact.html" class="hover:underline">Contact</a></li>
+                    <li><a href="faq.html" class="hover:underline">FAQ</a></li>
+                    <li><a href="legal.html" class="hover:underline">Mentions Légales</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="py-12">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Réservez Votre Voyage</h2>
+            <div class="bg-white rounded-lg shadow-lg p-6 max-w-lg mx-auto">
+                <div class="mb-4">
+                    <label for="car" class="block text-gray-700">Choisir une voiture</label>
+                    <select id="car" class="w-full p-2 border rounded mt-1">
+                        <option value="">Sélectionnez une voiture</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="trip" class="block text-gray-700">Choisir un trajet</label>
+                    <select id="trip" class="w-full p-2 border rounded mt-1">
+                        <option value="">Sélectionnez un trajet</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="pickup" class="block text-gray-700">Point de récupération</label>
+                    <select id="pickup" class="w-full p-2 border rounded mt-1">
+                        <option value="">Sélectionnez un point</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="date" class="block text-gray-700">Date de voyage</label>
+                    <input type="date" id="date" class="w-full p-2 border rounded mt-1">
+                </div>
+                <div class="mb-4">
+                    <label for="name" class="block text-gray-700">Nom</label>
+                    <input type="text" id="name" class="w-full p-2 border rounded mt-1">
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-700">Email</label>
+                    <input type="email" id="email" class="w-full p-2 border rounded mt-1">
+                </div>
+                <div class="mb-4">
+                    <label for="phone" class="block text-gray-700">Téléphone</label>
+                    <input type="tel" id="phone" class="w-full p-2 border rounded mt-1">
+                </div>
+                <p class="text-lg font-semibold">Total : <span id="total-price">0 FCFA</span></p>
+                <button onclick="initiatePayment()" class="mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded w-full">Payer</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-blue-600 text-white py-4">
+        <div class="container mx-auto px-4 text-center">
+            <p>© 2025 Explorez le Monde. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="touris.js"></script>
+</body>
+</html>
